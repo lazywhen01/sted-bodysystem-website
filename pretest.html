@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Your Lifestyle Matters | STED</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/circulatory-img/sted.jpg" rel="icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS Files -->
+  <link href="assets/css/variables.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+
+
+</head>
+
+<body data-bs-theme="light">
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+        <h1>Biological System</h1>
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="pretest.html">Pretest</a></li>
+          <li><a href="index.html">Main Topics</a></li>
+          <li><a href="posttest.html">Post Test</a></li>
+        </ul>
+      </nav><!-- .navbar -->
+
+      <div class="position-relative">
+        <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+
+        <div class="search-form-wrap js-search-form-wrap">
+          <form action="search-result.html" class="search-form">
+            <span class="icon bi-search"></span>
+            <input type="text" placeholder="Search" class="form-control">
+            <button class="btn js-search-close"><span class="bi-x"></span></button>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <style>
+      .quiz-app {
+        background-color: white;
+        width: 90%;
+        max-width: 600px;
+        margin: 0px auto 0;
+        border-radius: 10px;
+        padding: 30px;
+      }
+
+      .quiz-app h1 {
+        font-size: 30px;
+        color: rgb(0, 0, 0);
+        font-weight: 600;
+        text-align: center;
+        border-bottom: 1px solid #333;
+        padding-bottom: 30px;
+      }
+
+      .quiz {
+        padding: 20px 0;
+      }
+
+      .quiz h2 {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-size: 20px;
+        color: black;
+      }
+
+      .answer-btn {
+        background-color: white;
+        color: #222;
+        font-weight: 500;
+        width: 100%;
+        border: 1px solid #a8a8a8;
+        padding: 15px;
+        margin: 10px 0;
+        text-align: left;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-align: center;
+        border-radius: 5px;
+      }
+
+      .answer-btn:hover:not([disabled]) {
+        background-color: #5bffa2;
+        color: black;
+      }
+
+      .btn:disabled {
+        cursor: no-drop;
+      }
+
+      #next-answer-btn {
+        background-color: #191919;
+        color: #fff;
+        font-weight: 500;
+        width: 150px;
+        border: 0;
+        padding: 10px;
+        margin: 20px auto 0;
+        border-radius: 4px;
+        cursor: pointer;
+        display: none;
+      }
+
+      .correct {
+        background-color: #5bffa2;
+      }
+
+      .incorrect {
+        background-color: #f06868;
+      }
+
+      .pretest-btn {
+        padding: 10px;
+        background: #ffe5d6;
+        border: 2px solid #979797;
+        border-radius: 5px;
+        color: #444;
+      }
+    </style>
+
+    <!-- ======= Culture Category Section ======= -->
+    <section class="category-section">
+      <div class="container shadow p-3 px-5" data-aos="fade-up">
+
+        <div class="section-header d-flex justify-content-between align-items-center ">
+          <h3>Pretest (Respiratory System)</h3>
+        </div>
+        <div class="row">
+          <div class="quiz-app">
+            <h1 id="title">Question</h1>
+            <div class="quiz">
+              <h2 id="question">Question goes here</h2>
+              <div id="answer-buttons">
+                <button class="answer-btn">Answer 1</button>
+                <button class="answer-btn">Answer 2</button>
+                <button class="answer-btn">Answer 3</button>
+                <button class="answer-btn">Answer 4</button>
+              </div>
+              <button id="next-answer-btn">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Culture Category Section -->
+
+    <script>
+      const questions = [
+        {
+          question: 'What is the name of the air that we breathe in?',
+          answers: [
+            { text: 'Inhale', correct: false },
+            { text: 'Oxygen', correct: true },
+            { text: 'Carbon dioxide ', correct: false },
+            { text: 'Circulatory', correct: false },
+          ]
+        },
+        {
+          question: 'What is the name of the air that we breathe out?',
+          answers: [
+            { text: 'Trachea', correct: false },
+            { text: 'Inhale', correct: false },
+            { text: 'Carbon dioxide', correct: true },
+            { text: 'Circulatory', correct: false },
+          ]
+        },
+        {
+          question: 'What is the name of the tiny air sacs in the lungs?',
+          answers: [
+            { text: 'Alveoli', correct: true },
+            { text: 'Nasal Passageway', correct: false },
+            { text: 'Oxygen', correct: false },
+            { text: 'Carbon dioxide', correct: false },
+          ]
+        },
+        {
+          question: 'What is a synonym for the windpipe?',
+          answers: [
+            { text: 'Alveoli', correct: false },
+            { text: 'Circulatory', correct: false },
+            { text: 'Inhale', correct: false },
+            { text: 'Trachea', correct: true },
+          ]
+        },
+        {
+          question: 'What is another name for breathing in?',
+          answers: [
+            { text: 'Oxygen', correct: false },
+            { text: 'Inhale', correct: true },
+            { text: 'Diaphragm', correct: false },
+            { text: 'Nasal Passageway', correct: false },
+          ]
+        },
+      ]
+
+      const questionElement = document.getElementById('question')
+      const answerElement = document.getElementById('answer-buttons')
+      const nextButton = document.getElementById('next-answer-btn')
+      const title = document.getElementById('title')
+
+      let currentQuestionIndex = 0
+      let score = 0
+
+      startQuiz = () => {
+        title.innerHTML = "Question"
+        currentQuestionIndex = 0
+        score = 0
+        nextButton.innerHTML = 'Next';
+        showQuestion();
+      }
+      showQuestion = () => {
+        resetState()
+        let currentQuestion = questions[currentQuestionIndex]
+        let questionNo = currentQuestionIndex + 1
+        questionElement.innerHTML = + questionNo + ". " + currentQuestion.question
+
+        currentQuestion.answers.forEach(answer => {
+          const button = document.createElement('button')
+          button.innerHTML = answer.text
+          button.classList.add('answer-btn')
+          answerElement.appendChild(button)
+          if (answer.correct) {
+            button.dataset.correct = answer.correct
+          }
+          button.addEventListener('click', selectAnswer)
+        })
+      }
+      resetState = () => {
+        nextButton.style.display = 'none'
+        while (answerElement.firstChild) {
+          answerElement.removeChild(answerElement.firstChild)
+        }
+      }
+
+      selectAnswer = (e) => {
+        const selectBtn = e.target
+        const isCorrect = selectBtn.dataset.correct === 'true'
+        if (isCorrect) {
+          selectBtn.classList.add('correct')
+          score++
+        } else {
+          selectBtn.classList.add('incorrect')
+        }
+        Array.from(answerElement.children).forEach(button => {
+          if (button.dataset.correct === 'true') {
+            button.classList.add('correct')
+          }
+          button.disabled = true
+        })
+        nextButton.style.display = 'block'
+      }
+      showScore = () => {
+        resetState()
+        title.innerHTML = "Result"
+        questionElement.innerHTML = `You score is ${score} out of ${questions.length}`
+        nextButton.innerHTML = 'Play again'
+        nextButton.style.display = 'block'
+      }
+      handleNextButton = () => {
+        currentQuestionIndex++
+        if (currentQuestionIndex < questions.length) {
+          showQuestion()
+        } else {
+          showScore()
+        }
+      }
+      nextButton.addEventListener('click', () => {
+        if (currentQuestionIndex < questions.length) {
+          handleNextButton()
+        } else {
+          startQuiz()
+        }
+      })
+
+      startQuiz()
+    </script>
+
+    <!-- ======= Hero Slider Section ======= -->
+    <section>
+      <div class="container shadow p-3 px-5" data-aos="fade-in">
+        <div class="row">
+          <h3 class="text-center my-5">Name the parts of the Respiratory System</h3>
+          <div class="col-md-8 d-flex justify-content-center">
+            <img class="igit w-100" src="./assets/img/circulatory-img/respiratory-system-parts/illustration1.png"
+              alt="">
+          </div>
+          <div class="col-md-4 d-flex flex-column justify-content-center">
+
+            <div class="input-group mb-3">
+              <span class="input-group-text" style="background-color: #4472c4; color: white">1</span>
+              <input type="text" class="form-control" id="answer1" placeholder="Your answer" onblur="removeClass(this)">
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text" style="background-color: #4472c4; color: white">2</span>
+              <input type="text" class="form-control" id="answer2" placeholder="Your answer" onblur="removeClass(this)">
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text" style="background-color: #4472c4; color: white">3</span>
+              <input type="text" class="form-control" id="answer3" placeholder="Your answer" onblur="removeClass(this)">
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text" style="background-color: #4472c4; color: white">4</span>
+              <input type="text" class="form-control" id="answer4" placeholder="Your answer" onblur="removeClass(this)">
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text" style="background-color: #4472c4; color: white">5</span>
+              <input type="text" class="form-control" id="answer5" placeholder="Your answer" onblur="removeClass(this)">
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text" style="background-color: #4472c4; color: white">6</span>
+              <input type="text" class="form-control" id="answer6" placeholder="Your answer" onblur="removeClass(this)">
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text" style="background-color: #4472c4; color: white">7</span>
+              <input type="text" class="form-control" id="answer7" placeholder="Your answer" onblur="removeClass(this)">
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text" style="background-color: #4472c4; color: white">8</span>
+              <input type="text" class="form-control" id="answer8" placeholder="Your answer" onblur="removeClass(this)">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Hero Slider Section -->
+
+    <script>
+      const answer1 = document.querySelector('#answer1');
+      answer1.addEventListener('keyup', (e) => {
+        if (answer1.value.toUpperCase() === "NASAL CAVITY".toUpperCase()) {
+          answer1.classList.remove('is-invalid'); // Remove any existing invalid class
+          answer1.classList.add('is-valid'); // Add valid class
+
+        } else {
+          answer1.classList.remove('is-valid'); // Remove any existing valid class
+          answer1.classList.add('is-invalid'); // Add invalid class
+        }
+      })
+
+      const answer2 = document.querySelector('#answer2');
+      answer2.addEventListener('keyup', (e) => {
+        if (answer2.value.toUpperCase() === "Pharynx".toUpperCase()) {
+          answer2.classList.remove('is-invalid'); // Remove any existing invalid class
+          answer2.classList.add('is-valid'); // Add valid class
+          rightAnswerCount++;
+        } else {
+          answer2.classList.remove('is-valid'); // Remove any existing valid class
+          answer2.classList.add('is-invalid'); // Add invalid class
+        }
+      })
+
+      const answer3 = document.querySelector('#answer3');
+      answer3.addEventListener('keyup', (e) => {
+        if (answer3.value.toUpperCase() === "Trachea".toUpperCase()) {
+          answer3.classList.remove('is-invalid'); // Remove any existing invalid class
+          answer3.classList.add('is-valid'); // Add valid class
+        } else {
+          answer3.classList.remove('is-valid'); // Remove any existing valid class
+          answer3.classList.add('is-invalid'); // Add invalid class
+        }
+      })
+
+      const answer4 = document.querySelector('#answer4');
+      answer4.addEventListener('keyup', (e) => {
+        if (answer4.value.toUpperCase() === "Bronchi".toUpperCase()) {
+          answer4.classList.remove('is-invalid'); // Remove any existing invalid class
+          answer4.classList.add('is-valid'); // Add valid class
+        } else {
+          answer4.classList.remove('is-valid'); // Remove any existing valid class
+          answer4.classList.add('is-invalid'); // Add invalid class
+        }
+      })
+
+      const answer5 = document.querySelector('#answer5');
+      answer5.addEventListener('keyup', (e) => {
+        if (answer5.value.toUpperCase() === "Lungs".toUpperCase()) {
+          answer5.classList.remove('is-invalid'); // Remove any existing invalid class
+          answer5.classList.add('is-valid'); // Add valid class
+        } else {
+          answer5.classList.remove('is-valid'); // Remove any existing valid class
+          answer5.classList.add('is-invalid'); // Add invalid class
+        }
+      })
+
+      const answer6 = document.querySelector('#answer6');
+      answer6.addEventListener('keyup', (e) => {
+        if (answer6.value.toUpperCase() === "Bronchioles".toUpperCase()) {
+          answer6.classList.remove('is-invalid'); // Remove any existing invalid class
+          answer6.classList.add('is-valid'); // Add valid class
+        } else {
+          answer6.classList.remove('is-valid'); // Remove any existing valid class
+          answer6.classList.add('is-invalid'); // Add invalid class
+        }
+      })
+
+      const answer7 = document.querySelector('#answer7');
+      answer7.addEventListener('keyup', (e) => {
+        if (answer7.value.toUpperCase() === "Alveoli".toUpperCase()) {
+          answer7.classList.remove('is-invalid'); // Remove any existing invalid class
+          answer7.classList.add('is-valid'); // Add valid class
+        } else {
+          answer7.classList.remove('is-valid'); // Remove any existing valid class
+          answer7.classList.add('is-invalid'); // Add invalid class
+        }
+      })
+
+      const answer8 = document.querySelector('#answer8');
+      answer8.addEventListener('keyup', (e) => {
+        if (answer8.value.toUpperCase() === "Diaphragm".toUpperCase()) {
+          answer8.classList.remove('is-invalid'); // Remove any existing invalid class
+          answer8.classList.add('is-valid'); // Add valid class
+        } else {
+          answer8.classList.remove('is-valid'); // Remove any existing valid class
+          answer8.classList.add('is-invalid'); // Add invalid class
+        }
+      })
+
+    </script>
+
+    <section>
+      <div class="container p-3 px-5 rounded shadow" data-aos="fade-in">
+        <h1 class="mb-5">Circulatory System</h1>
+        <p class="mb-5 fs-5"><b>Instruction:</b> Fill in the blank. Choose the letter of the correct answer</p>
+        <div class="row">
+          <div class="mb-5">
+            <p class="fs-5">
+              1. The <input type="text"
+                class="form-control rounded-0 text-center border-4 border-primary border-top-0 border-start-0 border-end-0 rounded"
+                style="display:inline-block; width:100px" oninput="checkAnswer(this, 'A')" onblur="removeClass(this)">
+              is
+              a hollow, muscular structure that pumps blood.
+            </p>
+            <div class="d-flex flex-column gap-3 ms-5 fs-5">
+              <div>
+                <b>a</b>. Heart
+              </div>
+              <div>
+                <b>b</b>. Blood vessels
+              </div>
+              <div>
+                <b>c</b>. Blood
+              </div>
+            </div>
+          </div>
+          <div class="mb-5">
+            <p class="fs-5">
+              2. <input type="text"
+                class="form-control rounded-0 text-center border-4 border-primary   border-top-0 border-start-0 border-end-0 rounded"
+                style="display:inline-block; width:100px" oninput="checkAnswer(this, 'A')" onblur="removeClass(this)">
+              are tiny, thin-walled blood vessels.
+            </p>
+            <div class="d-flex flex-column gap-3 ms-5 fs-5">
+              <div>
+                <b>a</b>. Capillaries
+              </div>
+              <div>
+                <b>b</b>. Veins
+              </div>
+              <div>
+                <b>c</b>. Arteries
+              </div>
+            </div>
+          </div>
+          <div class="mb-5">
+            <p class="fs-5">
+              3. Both open and closed circulatory systems include blood, <input type="text"
+                class="form-control rounded-0 text-center border-4 border-primary   border-top-0 border-start-0 border-end-0 rounded"
+                style="display:inline-block; width:100px" oninput="checkAnswer(this, 'B')" onblur="removeClass(this)">
+              and a heart.
+
+            </p>
+            <div class="d-flex flex-column gap-3 ms-5 fs-5">
+              <div>
+                <b>a</b>. Heart
+              </div>
+              <div>
+                <b>b</b>. Blood vessels
+              </div>
+              <div>
+                <b>c</b>. Blood
+              </div>
+            </div>
+          </div>
+          <div class="mb-5">
+            <p class="fs-5">
+              4. Blood carries carbon dioxide and other wastes from lungs to the organs that eliminate them from the
+              body. <input type="text"
+                class="form-control rounded-0 text-center border-4 border-primary   border-top-0 border-start-0 border-end-0 rounded"
+                style="display:inline-block; width:100px" oninput="checkAnswer(this, 'A')" onblur="removeClass(this)">
+
+            </p>
+            <div class="d-flex flex-column gap-3 ms-5 fs-5">
+              <div>
+                <b>a</b>. True
+              </div>
+              <div>
+                <b>b</b>. False
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <script>
+      function checkAnswer(e, rightAnswer) {
+        if (e.value.toUpperCase() === rightAnswer.toUpperCase()) {
+          e.classList.add('is-valid')
+          e.classList.remove('is-invalid')
+        }
+        else {
+          e.classList.remove('is-valid')
+          e.classList.add('is-invalid')
+        }
+      }
+
+      function removeClass(e) {
+        if (e.value === '') {
+          e.classList.remove('is-invalid')
+          e.classList.remove('is-valid')
+        }
+      }
+    </script>
+
+    <style>
+      .img-holder {
+        position: relative;
+        width: 300px;
+        cursor: pointer;
+      }
+
+      .img-holder #check {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: rgb(137, 230, 137);
+      }
+
+      .img-holder #uncheck {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: red;
+      }
+
+      .img-holder img {
+        width: 100%;
+        /* Set a fixed width */
+        height: 200px;
+        /* Set a fixed height */
+        object-fit: cover;
+        /* Optional: Cover will ensure the entire image is visible, might crop parts */
+      }
+    </style>
+
+    <section>
+      <div class="container p-3 px-5 rounded shadow" data-aos="fade-in">
+        <h1 class="mb-5">Pre-test: Healthy Lifestyle Assessment</h1>
+        <p class="mb-5 fs-5"><b>Instruction:</b> Below are pictures of various lifestyle choices, your task is to select
+          the option that presents a healthy lifestyle. Click ONLY on the pictures you believe promote a healthy
+          lifestyle. </p>
+
+        <div class="d-flex row row-cols-1 row-cols-md-4 g-3 justify-content-center">
+          <div class="img-holder" onclick="isRightLifeStyle(this, false)">
+            <img class="img-thumbnail p-2" src="./assets/img/pretest/1.jpg" alt="">
+            <svg id="check" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+              class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+            </svg>
+            <svg id="uncheck" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+              class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+            </svg>
+          </div>
+          <div class="img-holder" onclick="isRightLifeStyle(this, true)">
+            <img class="img-thumbnail p-2" src="./assets/img/pretest/2.jpg" alt="">
+            <svg id="check" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+              class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+            </svg>
+            <svg id="uncheck" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+              class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+            </svg>
+          </div>
+          <div class="img-holder" onclick="isRightLifeStyle(this, true)">
+            <img class="img-thumbnail p-2" src="./assets/img/pretest/3.jpg" alt="">
+            <svg id="check" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+              class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+            </svg>
+            <svg id="uncheck" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+              class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+            </svg>
+          </div>
+          <div class="img-holder" onclick="isRightLifeStyle(this, false)">
+            <img class="img-thumbnail p-2" src="./assets/img/pretest/4.jpg" alt="">
+            <svg id="check" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+              class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+            </svg>
+            <svg id="uncheck" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+              class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+            </svg>
+          </div>
+          <div class="img-holder" onclick="isRightLifeStyle(this, false)">
+            <img class="img-thumbnail p-2" src="./assets/img/pretest/5.jpg" alt="">
+            <svg id="check" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+              class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+            </svg>
+            <svg id="uncheck" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+              class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+            </svg>
+          </div>
+          <div class="img-holder" onclick="isRightLifeStyle(this, false)">
+            <img class="img-thumbnail p-2" src="./assets/img/pretest/6.png" alt="">
+            <svg id="check" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+              class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+            </svg>
+            <svg id="uncheck" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+              class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+            </svg>
+          </div>
+          <div class="img-holder" onclick="isRightLifeStyle(this, true)">
+            <img class="img-thumbnail p-2" src="./assets/img/pretest/7.jpg" alt="">
+            <svg id="check" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+              class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+            </svg>
+            <svg id="uncheck" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+              class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+            </svg>
+          </div>
+          <div class="img-holder" onclick="isRightLifeStyle(this, false)">
+            <img class="img-thumbnail p-2" src="./assets/img/pretest/8.jpg" alt="">
+            <svg id="check" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+              class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+            </svg>
+            <svg id="uncheck" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+              class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+            </svg>
+          </div>
+          <div class="img-holder" onclick="isRightLifeStyle(this, true)">
+            <img class="img-thumbnail p-2" src="./assets/img/pretest/9.jpg" alt="">
+            <svg id="check" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+              class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+            </svg>
+            <svg id="uncheck" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+              class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+            </svg>
+          </div>
+        </div>
+    </section>
+
+
+    <script>
+      function isRightLifeStyle(e, isRight) {
+
+        var children = e.children;
+
+        if (isRight) {
+          children[0].style.backgroundColor = "lightgreen"; // Second child
+          children[1].style.display = "block"; // Second child
+
+        } else {
+          children[0].style.backgroundColor = "red"; // Second child
+          children[2].style.display = "block"; // Second child
+        }
+      }
+    </script>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+    <div class="footer-content">
+      <div class="container">
+
+        <div class="row g-5">
+          <div class="col-lg-4">
+            <h3 class="footer-heading">About Us</h3>
+            <p>This website offers comprehensive insights into the relationship between lifestyle choices and the
+              functioning of the respiratory and circulatory systems. It aims to enhance student understanding of the
+              impact of their lifestyle and help them make proactive steps in maintaining their respiratory and
+              circulatory systems healthy.</p>
+            <div>
+              <a style="color: white;" href="about.html" class="more">Learn More<i
+                  class="bi bi-arrow-right-short"></i></a>
+            </div>
+          </div>
+          <div class="col-6 col-lg-2">
+            <h3 class="footer-heading">Navigation</h3>
+            <ul class="footer-links list-unstyled">
+              <li><a href="index.html"><i class="bi bi-chevron-right"></i> Home</a></li>
+              <li><a href="pretest.html"><i class="bi bi-chevron-right"></i> Pretest</a></li>
+              <li><a href="index.html"><i class="bi bi-chevron-right"></i> Main Topic</a></li>
+              <li><a href="posttest.html"><i class="bi bi-chevron-right"></i> Post Test</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4">
+            <h3 class="footer-heading">Related Topics</h3>
+
+            <ul class="footer-links footer-blog-entry list-unstyled">
+              <li>
+                <a href="respi-circu.html" class="d-flex align-items-center">
+                  <img src="assets/img/circulatory-img/How Lungs Work Illustration_edited.jpg" alt=""
+                    class="img-fluid me-3">
+                  <div>
+                    <div class="post-meta d-block"><span class="date">Topic I</span> <span class="mx-1">&bullet;</span>
+                      <span>April 2024</span>
+                    </div>
+                    <span>Respiratory and Circulatory System</span>
+                  </div>
+                </a>
+              </li>
+
+              <li>
+                <a href="lifestyle.html" class="d-flex align-items-center">
+                  <img src="assets/img/circulatory-img/Hypertension_Effects_Thumbnail-732x549.jpg" alt=""
+                    class="img-fluid me-3">
+                  <div>
+                    <div class="post-meta d-block"><span class="date">Topic II</span> <span class="mx-1">&bullet;</span>
+                      <span>April 2024</span>
+                    </div>
+                    <span>Lifestyle that affect the Circulatory and Respiratory System</span>
+                  </div>
+                </a>
+              </li>
+
+              <li>
+                <a href="diseases.html" class="d-flex align-items-center">
+                  <img src="assets/img/circulatory-img/pneumonia-diagram-1024x828.jpg" alt="" class="img-fluid me-3">
+                  <div>
+                    <div class="post-meta d-block"><span class="date">Topic III</span> <span
+                        class="mx-1">&bullet;</span>
+                      <span>April 2024</span>
+                    </div>
+                    <span>Respiratory System and Circulatory System Diseases</span>
+                  </div>
+                </a>
+              </li>
+
+              <li>
+                <a href="healthy.html" class="d-flex align-items-center">
+                  <img src="assets/img/circulatory-img/587089-healthy-vs-smoker-lungs-1296x728-body-1024x576.png" alt=""
+                    class="img-fluid me-3">
+                  <div>
+                    <div class="post-meta d-block"><span class="date">Topic IV</span> <span class="mx-1">&bullet;</span>
+                      <span>April 2024</span>
+                    </div>
+                    <span>Keeping the Circulatory System and Respiratory System Healthy</span>
+                  </div>
+                </a>
+              </li>
+
+            </ul>
+
+          </div>
+
+          <div class="col-6 col-lg-2">
+            <h3 class="footer-heading">References</h3>
+            <ul class="footer-links list-unstyled">
+              <li> Pixel Logic Studio</li>
+              <li> Science Articles </li>
+              <li> Pinterest</li>
+              <li>Pixa Bay</li>
+              <li>Unsplash</li>
+              <li>Getty Images</li>
+              <li>Google</li>
+              <li>Facebook</li>
+              <li>Youtube</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-legal">
+      <div class="container">
+
+        <div class="row justify-content-between">
+          <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+            <div class="copyright">
+              © <strong><span>STED</span></strong>. All Rights Reserved
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="social-links mb-3 mb-lg-0 text-center text-md-end">
+              <a href="https://fb.watch/rAfXbzLcR7/" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="https://my.clevelandclinic.org/health/body/21775-circulatory-system" class="google-plus"><i
+                  class="bi bi-google"></i></a>
+              <a href="https://youtu.be/9fxm85Fy4sQ?si=plPC3OdD4hAUrIYA/" class="linkedin"><i
+                  class="bi bi-youtube"></i></a>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </footer>
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader">
+    <div class="line"></div>
+  </div>
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    function myFunction() {
+      var element = document.body;
+      element.dataset.bsTheme =
+        element.dataset.bsTheme == "light" ? "dark" : "light";
+    }
+  </script>
+
+</body>
+
+</html>
